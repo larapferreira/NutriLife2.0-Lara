@@ -1,5 +1,6 @@
 package com.example.nutrilife20_lara;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -135,7 +137,24 @@ public class ResultActivity extends AppCompatActivity{
         btnVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+
+                AlertDialog.Builder alerta = new AlertDialog.Builder(ResultActivity.this);
+                alerta.setTitle("Observação!");
+                alerta.setIcon(R.drawable.img);
+                alerta.setMessage("Tanto o IMC quanto a RCQ são indicadores antropométricos e os resultados" +
+                        " apresentados pelo aplicativo possuem finalidade exclusivamente educacional, não " +
+                        "constituindo diagnóstico médico.");
+
+                alerta.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finish();
+                    }
+                });
+
+                alerta.setNegativeButton("Não", null);
+
+                alerta.create().show();
             }
         });
 
